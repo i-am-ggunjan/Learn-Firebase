@@ -11,6 +11,14 @@ const App = () => {
     onMessageListener(setNotification);
   }, []);
 
+  function checkOnlineStatus() {
+    const isOnline = navigator.onLine;
+    console.log('User online status:', isOnline);
+  }
+
+  // Example usage
+  checkOnlineStatus();
+
   return (
     <div>
 
