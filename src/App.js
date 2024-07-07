@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { generateTokenByRequestPermission, onMessageListener } from './configs/firebase-config'
+import useOnlineStatus from './hooks/useOnlineStatus';
 
 const App = () => {
   const [notification, setNotification] = useState(null);
@@ -11,18 +12,15 @@ const App = () => {
     onMessageListener(setNotification);
   }, []);
 
-  function checkOnlineStatus() {
-    const isOnline = navigator.onLine;
-    console.log('User online status:', isOnline);
-  }
-
-  // Example usage
-  checkOnlineStatus();
+  const onlineStatus = useOnlineStatus();
 
   return (
-    <div>
-
-    </div>
+    <>
+      <div>
+        <h1>Online/Offline Status</h1>
+        <p>User is {onlineStatus ? 'online' : 'offline'}</p>
+      </div>
+    </>
   )
 }
 
